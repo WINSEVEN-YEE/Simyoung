@@ -8,9 +8,8 @@ bot = commands.Bot(command_prefix="**")
 client = discord.Client()
 
 @bot.event
-async def on_ready(ctx):
+async def on_ready():
     print("We have logged in as {0.user}".format(bot))
-    await ctx.send("저는 업데이트 됬다구요!")
     await bot.change_presence(activity=discord.Game(name="학생들을 선동"))
 
 @bot.command()
