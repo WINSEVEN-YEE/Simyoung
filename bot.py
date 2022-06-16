@@ -16,19 +16,13 @@ async def on_ready():
 async def join(ctx):
     try:
         if ctx.author.voice and ctx.author.voice.channel:
-            if discord.utils.get(client.voice_clients, guild=ctx.guild) == None:
-                channel = ctx.author.voice.channel
-                await channel.connect()
-                await ctx.message.add_reaction("✅")
-            else:
-                await ctx.send("이미 음성채널에 있다구요!")
+            channel = ctx.author.voice.channel
+            await channel.connect()
+            await ctx.message.add_reaction("✅")
         else:
             await ctx.send("아유! 음성채널에 먼저 가셔야죠 어머니!")
     except Exception as e:
-        elog = str(e)
-        embed = discord.Embed(title="에러가 났다구요!", description=elog, color=discord.Color.red())
-        await ctx.send(embed=embed)
-
+        await ctx.send("이미 음성채널에 있다구요!")
 @bot.command()
 async def quit(ctx):
     await bot.voice_clients[0].disconnect()
