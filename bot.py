@@ -31,11 +31,9 @@ async def join(ctx):
 
 @bot.command()
 async def quit(ctx):
-    if discord.utils.get(client.voice_clients, guild=ctx.guild) != None:
-        await bot.voice_clients[0].disconnect()
-        await ctx.message.add_reaction("✅")
-    else:
-        await ctx.send("이미 음성채널에 없다구요!")
+    await bot.voice_clients[0].disconnect()
+    await ctx.message.add_reaction("✅")
+
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
