@@ -16,7 +16,7 @@ async def on_ready():
 async def join(ctx):
     try:
         if ctx.author.voice and ctx.author.voice.channel:
-            if discord.utils.get(client.voice_clients, guild=ctx.guild) == None:
+            if discord.utils.get(client.voice_clients, guild=ctx.guild) != None:
                 channel = ctx.author.voice.channel
                 await channel.connect()
                 await ctx.message.add_reaction("✅")
@@ -31,7 +31,7 @@ async def join(ctx):
 
 @bot.command()
 async def quit(ctx):
-    if discord.utils.get(client.voice_clients, guild=ctx.guild) != None:
+    if discord.utils.get(client.voice_clients, guild=ctx.guild) == None:
         await bot.voice_clients[0].disconnect()
         await ctx.message.add_reaction("✅")
     else:
