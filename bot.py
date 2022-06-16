@@ -23,9 +23,17 @@ async def join(ctx):
             await ctx.send("아유! 음성채널에 먼저 가셔야죠 어머니!")
     except Exception as e:
         await ctx.send("이미 음성채널에 있다구요!")
+
 @bot.command()
 async def quit(ctx):
     await bot.voice_clients[0].disconnect()
+    await ctx.message.add_reaction("✅")
+
+@bot.command()
+async def 고자라니(ctx):
+    server = ctx.message.guild
+    channel = server.voice_client
+    channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani.mp3"))
     await ctx.message.add_reaction("✅")
 
 
