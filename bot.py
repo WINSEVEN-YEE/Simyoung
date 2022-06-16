@@ -36,6 +36,13 @@ async def 고자라니(ctx):
     channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani.mp3"))
     await ctx.message.add_reaction("✅")
 
+@bot.command()
+async def 고자라니풀(ctx):
+    server = ctx.message.guild
+    channel = server.voice_client
+    channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani_Full.mp3"))
+    await ctx.message.add_reaction("✅")
+
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
