@@ -193,14 +193,11 @@ async def 폭8(ctx):
                     global quitting
                     quitting = False
                     await ctx.message.add_reaction("✅")
-                    try:
-                        break
-                    except Exception as e:
-                        embed = discord.Embed(title="Error", description=str(e), color=discord.Color.red())
-                        await ctx.send(embed=embed)
-                pass
-            if quitting == True:
-                await bot.voice_clients[0].disconnect()
+                if quitting == True:
+                    pass
+                else:
+                    break
+            await bot.voice_clients[0].disconnect()
         else:
             await ctx.send("아직 재생 중이라구요!")
     except:
