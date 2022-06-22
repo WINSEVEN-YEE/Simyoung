@@ -21,6 +21,28 @@ async def on_ready():
     pokpal = False
 
 @bot.command()
+async def 명령어(ctx):
+    embed = discord.Embed(title="명령어 목록", color=discord.Color.red())
+    embed.add_field(name="--join", value="음성 채널에 참가합니다.", inline=False)
+    embed.add_field(name="--quit", value="음성 채널에서 나갑니다.", inline=False)
+    embed.add_field(name="--stop", value="재생 중인 음성을 정지합니다. 그러나 이미 일어난 폭★8은 막을 수 없습니다.", inline=False)
+    embed.add_field(name="--고자라니1", inline=False)
+    embed.add_field(name="--고자라니2", inline=False)
+    embed.add_field(name="--고자라니3", inline=False)
+    embed.add_field(name="--고자라니풀", value="고자라니 풀버전을 재생합니다.", inline=False)
+    embed.add_field(name="--반동", inline=False)
+    embed.add_field(name="--에엑따", inline=False)
+    embed.add_field(name="--할거야안할거야", inline=False)
+    embed.add_field(name="--김두한", inline=False)
+    embed.add_field(name="--안돼", inline=False)
+    embed.add_field(name="--말도안돼", inline=False)
+    embed.add_field(name="--폭8", inline=False)
+    embed.add_field(name="--죄", inline=False)
+    embed.add_field(name="--님", inline=False)
+    embed.add_field(name="--무슨소리", inline=False)
+    await ctx.send(embed=embed)
+
+@bot.command()
 async def join(ctx):
     try:
         if ctx.author.voice and ctx.author.voice.channel:
