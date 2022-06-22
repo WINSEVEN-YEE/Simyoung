@@ -3,6 +3,7 @@ import asyncio
 import nacl
 from discord.ext import commands
 import os
+import time
 
 bot = commands.Bot(command_prefix="**")
 client = discord.Client()
@@ -195,11 +196,11 @@ async def 폭8(ctx):
             await ctx.message.add_reaction("✅")
             while ctx.voice_client.is_playing() and quitting:
                 await asyncio.sleep(0.01)
-            await ctx.send(file=discord.File("./Images/pokpal.gif"))
             if quitting:
+                await ctx.send(file=discord.File("./Images/pokpal.gif"))
                 channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal2.mp3"))
             while ctx.voice_client.is_playing() and quitting:
-                pass
+                time.sleep(0.01)
             if quitting:
                 await bot.voice_clients[0].disconnect()
                 quitting = False

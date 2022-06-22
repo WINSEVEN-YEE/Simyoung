@@ -2,3 +2,4 @@ discord.py
 asyncio
 pynacl
 ffmpeg
+time
