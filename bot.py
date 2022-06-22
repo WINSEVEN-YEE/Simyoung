@@ -22,7 +22,7 @@ async def on_ready():
 
 @bot.command()
 async def 명령어(ctx):
-    embed = discord.Embed(title="명령어 목록", color=discord.Color.red())
+    embed = discord.Embed(title="명령어 목록",description="", color=discord.Color.red())
     embed.add_field(name="--join", value="음성 채널에 참가합니다.", inline=False)
     embed.add_field(name="--quit", value="음성 채널에서 나갑니다.", inline=False)
     embed.add_field(name="--stop", value="재생 중인 음성을 정지합니다. 그러나 이미 일어난 폭★8은 막을 수 없습니다.", inline=False)
