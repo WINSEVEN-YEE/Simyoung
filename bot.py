@@ -207,7 +207,7 @@ async def 폭8(ctx):
                 await ctx.send(file=discord.File("./Images/pokpal.gif"))
                 channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal2.mp3"))
                 while ctx.voice_client.is_playing():
-                    pass
+                    await asyncio.sleep(0.01)
                 await bot.voice_clients[0].disconnect()
                 quitting = False
                 pokpal = False
