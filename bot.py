@@ -7,10 +7,14 @@ import os
 bot = commands.Bot(command_prefix="**")
 client = discord.Client()
 
+global quitting
+
 @bot.event
 async def on_ready():
+    global quitting
     print("We have logged in as {0.user}".format(bot))
     await bot.change_presence(activity=discord.Game(name="학생들을 선동"))
+    quitting = False
 
 @bot.command()
 async def join(ctx):
@@ -30,145 +34,199 @@ async def quit(ctx):
     await ctx.message.add_reaction("✅")
 
 @bot.command()
+async def stop(ctx):
+    server = ctx.message.guild
+    channel = server.voice_client
+    channel.stop()
+    global quitting
+    quitting = False
+    await ctx.message.add_reaction("✅")
+
+@bot.command()
 async def 고자라니1(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani1.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani1.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 고자라니2(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani2.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani2.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 고자라니3(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani3.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani3.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 고자라니풀(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani_Full.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Gozarani_Full.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 반동(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Bandong.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Bandong.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 에엑따(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/EekTa.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/EekTa.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 할거야안할거야(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Iwont.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Iwont.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 김두한(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/KimDooHan.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/KimDooHan.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 안돼(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/No.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/No.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
         
 @bot.command()
 async def 말도안돼(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/NoHorse.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/NoHorse.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 폭8(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal.mp3"))
-        await ctx.message.add_reaction("✅")
-        while ctx.voice_client.is_playing():
-            pass
-        await bot.voice_clients[0].disconnect()
+        if not ctx.voice_client.is_playing():
+            global quitting
+            quitting = True
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal.mp3"))
+            await ctx.message.add_reaction("✅")
+            while ctx.voice_client.is_playing():
+                pass
+            if quitting == True:
+                await bot.voice_clients[0].disconnect()
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 죄(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Sin.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Sin.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 님(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/Socialism.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Socialism.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
 @bot.command()
 async def 무슨소리(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.play(discord.FFmpegPCMAudio("./Sounds/WhatSound.mp3"))
-        await ctx.message.add_reaction("✅")
+        if not ctx.voice_client.is_playing():
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.play(discord.FFmpegPCMAudio("./Sounds/WhatSound.mp3"))
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아직 재생 중이라구요!")
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
