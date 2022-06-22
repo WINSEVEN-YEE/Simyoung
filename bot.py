@@ -36,12 +36,15 @@ async def quit(ctx):
 @bot.command()
 async def stop(ctx):
     try:
-        server = ctx.message.guild
-        channel = server.voice_client
-        channel.stop()
-        global quitting
-        quitting = False
-        await ctx.message.add_reaction("✅")
+        if ctx.author.voice and ctx.author.voice.channel:
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.stop()
+            global quitting
+            quitting = False
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("아유! 음성채널에 먼저 가셔야죠 어머니!")
     except Exception as e:
         embed = discord.Embed(title="에러가 났다구요!", description=str(e), color=discord.Color.red())
         await ctx.send(embed=embed)
@@ -187,6 +190,8 @@ async def 폭8(ctx):
             channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal.mp3"))
             await ctx.message.add_reaction("✅")
             while ctx.voice_client.is_playing():
+                a = 1
+                a += 1
                 if quitting == True:
                     pass
                 else:
