@@ -9,13 +9,16 @@ bot = commands.Bot(command_prefix="**")
 client = discord.Client()
 
 global quitting
+global pokpal
 
 @bot.event
 async def on_ready():
     global quitting
+    global pokpal
     print("We have logged in as {0.user}".format(bot))
     await bot.change_presence(activity=discord.Game(name="학생들을 선동"))
     quitting = False
+    pokpal = False
 
 @bot.command()
 async def join(ctx):
@@ -42,12 +45,14 @@ async def quit(ctx):
 async def stop(ctx):
     try:
         if ctx.author.voice and ctx.author.voice.channel:
-            server = ctx.message.guild
-            channel = server.voice_client
-            channel.stop()
-            global quitting
-            quitting = False
-            await ctx.message.add_reaction("✅")
+            global pokpal
+            if not pokpal:
+                server = ctx.message.guild
+                channel = server.voice_client
+                channel.stop()
+                global quitting
+                quitting = False
+                await ctx.message.add_reaction("✅")
         else:
             await ctx.send("아유! 음성채널에 먼저 가셔야죠 어머니!")
     except Exception as e:
@@ -189,6 +194,7 @@ async def 폭8(ctx):
     try:
         if not ctx.voice_client.is_playing():
             global quitting
+            global pokpal
             quitting = True
             server = ctx.message.guild
             channel = server.voice_client
@@ -197,13 +203,14 @@ async def 폭8(ctx):
             while ctx.voice_client.is_playing() and quitting:
                 await asyncio.sleep(0.01)
             if quitting:
+                pokpal = True
                 await ctx.send(file=discord.File("./Images/pokpal.gif"))
                 channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal2.mp3"))
-            while ctx.voice_client.is_playing() and quitting:
-                time.sleep(0.01)
-            if quitting:
+                while ctx.voice_client.is_playing():
+                    pass
                 await bot.voice_clients[0].disconnect()
                 quitting = False
+                pokpal = False
         else:
             await ctx.send("아직 재생 중이라구요!")
     except:
