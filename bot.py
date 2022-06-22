@@ -191,17 +191,17 @@ async def 폭8(ctx):
             quitting = True
             server = ctx.message.guild
             channel = server.voice_client
-            channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal.mp3"))
+            channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal1.mp3"))
             await ctx.message.add_reaction("✅")
-            while ctx.voice_client.is_playing():
+            while ctx.voice_client.is_playing() and quitting:
                 await asyncio.sleep(0.01)
-                if quitting:
-                    pass
-                else:
-                   break
+            await ctx.send(file=discord.File("./Images/pokpal"))
+            if quitting:
+                channel.play(discord.FFmpegPCMAudio("./Sounds/Pokpal2.mp3"))
+            while ctx.voice_client.is_playing() and quitting:
+                pass
             if quitting:
                 await bot.voice_clients[0].disconnect()
-                await ctx.send(quitting)
                 quitting = False
         else:
             await ctx.send("아직 재생 중이라구요!")
