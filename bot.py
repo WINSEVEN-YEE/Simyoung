@@ -24,7 +24,7 @@ async def on_ready():
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send("%s는 알 수 없는 커맨드라구요! ('**명령어'로 명령어 목록 확인)" % str(ctx.message.content))
+        await ctx.send("\%s는 알 수 없는 커맨드라구요! ('**명령어'로 명령어 목록 확인)" % str(ctx.message.content))
     else:
         embed = discord.Embed(title="에러가 났다구요!", description=str(error), color=discord.Color.red())
         await ctx.send(embed=embed)
