@@ -3,3 +3,4 @@ asyncio
 pynacl
 ffmpeg
 timestamp
+traceback

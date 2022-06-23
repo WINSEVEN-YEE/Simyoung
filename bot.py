@@ -4,6 +4,7 @@ import nacl
 from discord.ext import commands
 import os
 import time
+import traceback
 
 bot = commands.Bot(command_prefix="**")
 client = discord.Client()
@@ -19,6 +20,14 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name="학생들을 선동"))
     quitting = False
     pokpal = False
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("%s는 알 수 없는 커맨드라구요! ('**명령어'로 명령어 목록 확인)" % str(ctx.message.content))
+    else:
+        embed = discord.Embed(title="에러가 났다구요!", description=str(error), color=discord.Color.red())
+        await ctx.send(embed=embed)
 
 @bot.command()
 async def 명령어(ctx):
@@ -67,21 +76,17 @@ async def quit(ctx):
 
 @bot.command()
 async def stop(ctx):
-    try:
-        if ctx.author.voice and ctx.author.voice.channel:
-            global pokpal
-            if not pokpal:
-                server = ctx.message.guild
-                channel = server.voice_client
-                channel.stop()
-                global quitting
-                quitting = False
-                await ctx.message.add_reaction("✅")
-        else:
-            await ctx.send("아유! 음성채널에 먼저 가셔야죠 어머니!")
-    except Exception as e:
-        embed = discord.Embed(title="에러가 났다구요!", description=str(e), color=discord.Color.red())
-        await ctx.send(embed=embed)
+    if ctx.author.voice and ctx.author.voice.channel:
+        global pokpal
+        if not pokpal:
+            server = ctx.message.guild
+            channel = server.voice_client
+            channel.stop()
+            global quitting
+            quitting = False
+            await ctx.message.add_reaction("✅")
+    else:
+        await ctx.send("아유! 음성채널에 먼저 가셔야죠 어머니!")
 
 @bot.command()
 async def 고자라니1(ctx):
