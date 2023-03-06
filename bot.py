@@ -286,7 +286,5 @@ async def 무슨소리(ctx):
 
 
 
-access_token = os.environ["OTg2OTYzNzc2OTAzNDU0ODMw.G68-UY.QrVTxfdx445CFpPEbnZ_tRSAXoL-bcvKRX2NOA"]
+access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
-
-#"BOT_TOKEN"
