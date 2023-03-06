@@ -7,6 +7,7 @@ import time
 import traceback
 
 bot = commands.Bot(command_prefix="**")
+dbot = discord.Bot()
 client = discord.Client()
 
 global quitting
@@ -29,7 +30,7 @@ async def on_command_error(ctx, error):
         embed = discord.Embed(title="에러가 났다구요!", description=str(error), color=discord.Color.red())
         await ctx.send(embed=embed)
 
-@bot.slash_command("명령어들을 확인합니다.")
+@dbot.slash_command("명령어들을 확인합니다.")
 async def 명령어(ctx):
     embed = discord.Embed(title="명령어 목록", description="", color=discord.Color.red())
     embed.set_author(name="심영", url="https://www.youtube.com/watch?v=JapL0NTs2yk", icon_url="https://t1.daumcdn.net/cfile/blog/999BD6335C1F7AD22D")
@@ -53,7 +54,7 @@ async def 명령어(ctx):
     embed.add_field(name="/무슨소리", value="음성 채널에서만 사용 가능합니다.", inline=False)
     await ctx.send(embed=embed)
 
-@bot.slash_command("음성 채널에 참가합니다.")
+@dbot.slash_command("음성 채널에 참가합니다.")
 async def join(ctx):
     try:
         if ctx.author.voice and ctx.author.voice.channel:
@@ -67,14 +68,14 @@ async def join(ctx):
     except Exception as e:
         await ctx.send("이미 음성채널에 있다구요!")
 
-@bot.slash_command(description="음성 채널에서 나갑니다.")
+@dbot.slash_command(description="음성 채널에서 나갑니다.")
 async def quit(ctx):
     await bot.voice_clients[0].disconnect()
     global quitting
     quitting = False
     await ctx.message.add_reaction("✅")
 
-@bot.slash_command("재생 중인 음성을 정지합니다. 그러나 이미 일어난 폭★8은 막을 수 없습니다.")
+@dbot.slash_command("재생 중인 음성을 정지합니다. 그러나 이미 일어난 폭★8은 막을 수 없습니다.")
 async def stop(ctx):
     if ctx.author.voice and ctx.author.voice.channel:
         global pokpal
@@ -88,7 +89,7 @@ async def stop(ctx):
     else:
         await ctx.send("아유! 음성채널에 먼저 가셔야죠 어머니!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 고자라니1(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -101,7 +102,7 @@ async def 고자라니1(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 고자라니2(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -114,7 +115,7 @@ async def 고자라니2(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 고자라니3(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -127,7 +128,7 @@ async def 고자라니3(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("고자라니 풀버전을 재생합니다. 역시 음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("고자라니 풀버전을 재생합니다. 역시 음성 채널에서만 사용 가능합니다.")
 async def 고자라니풀(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -140,7 +141,7 @@ async def 고자라니풀(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 반동(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -153,7 +154,7 @@ async def 반동(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 에엑따(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -166,7 +167,7 @@ async def 에엑따(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 할거야안할거야(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -179,7 +180,7 @@ async def 할거야안할거야(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 김두한(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -192,7 +193,7 @@ async def 김두한(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 안돼(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -205,7 +206,7 @@ async def 안돼(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
         
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 말도안돼(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -218,7 +219,7 @@ async def 말도안돼(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("심영이 폭★8합니다. 역시 음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("심영이 폭★8합니다. 역시 음성 채널에서만 사용 가능합니다.")
 async def 폭8(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -245,7 +246,7 @@ async def 폭8(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 죄(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -258,7 +259,7 @@ async def 죄(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 님(ctx):
     try:
         if not ctx.voice_client.is_playing():
@@ -271,7 +272,7 @@ async def 님(ctx):
     except:
         await ctx.send("아유! 음성채널에 먼저 초대해야 한다구요!")
 
-@bot.slash_command("음성 채널에서만 사용 가능합니다.")
+@dbot.slash_command("음성 채널에서만 사용 가능합니다.")
 async def 무슨소리(ctx):
     try:
         if not ctx.voice_client.is_playing():
